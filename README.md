@@ -66,3 +66,10 @@ git push -> manda pro git
 
 ORDEM: 
 git add . , git commit -m"", git push.
+
+```java
+public void main (String args[]){
+int i = 0;
+i++;
+}
+```
