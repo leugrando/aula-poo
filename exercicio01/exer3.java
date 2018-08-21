@@ -2,9 +2,9 @@ import java.util.Scanner;
 public class exer3 {
 	public static void main (String[] args){
 int n,i;
-string[] vetor = new string[12];
+String[] vetor = new String[12];
 Scanner leitor = new Scanner(System.in);
-system.out.println("Digite um numero de 1 a 12: ");
+System.out.println("Digite um numero de 1 a 12: ");
 n = leitor.nextInt();
 vetor[0]= "Janeiro";
 vetor[1]= "Fevereiro";
@@ -21,8 +21,8 @@ vetor[11]= "Dezembro";
 
 for(i=0;i<12;i++){
 if(i==n){
-system.out.println(vetor[i+1]);}
-}
+System.out.println(vetor[i-1]);}
+
 	}
 	
 		}

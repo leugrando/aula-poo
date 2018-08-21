@@ -6,6 +6,7 @@ Scanner leitor = new Scanner(System.in);
 System.out.println("Digite seu peso:");
 p = leitor.nextFloat();
 System.out.println("Digite sua altura:");
+leitor.netxLine();
 a = leitor.nextFloat();
 
 imc=p/(a*a);
