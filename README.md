@@ -74,6 +74,8 @@ git log -> faz o commit e mostra mensagem, data e etc do commit
 export PAGER= -> para poder usar o gitlog no pc univali
 
 git push -> manda pro git
+
+git pull -> traz do git pro local
 ```
 ### ORDEM:
 ```bash 
