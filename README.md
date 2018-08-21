@@ -1,34 +1,45 @@
 # Leonardo Grando
 
 ## Objetivo:
+```bash
 Repositorio para manter arquivos da disciplina de poo
-
+```
 ## Comandos importantes para lembrar
 
 ### Clonar repositorio
-```
+```bash
 git clone {endereço}
 ```
 ### Para adicionar arquivos no stage
+```bash
 git add {nome do arquivo}
 ou
 git add .
-
+´´´
 ### Para enviar / commitar o codigo
+```bash
 git commit -m "MENSAGEM DO COMMIT"
-
+```
 ### Para ver o log
+```bash
 git log
+```
 
 ### Para ver a situacao do working dir
-git statusx
+```bash
+git status
+```
 
 ### Para enviar as alteracoes pro repositorio remoto
+```bash
 git push
-
+```
 ## Importante quando estiver na UNIVALI 
+```bash
 export PAGER
+```
 ###COLINHAS
+```bash
 cd c: -> mudar diretorio para o c.
 cd Users/6514995/Downloads
 
@@ -63,10 +74,11 @@ git log -> faz o commit e mostra mensagem, data e etc do commit
 export PAGER= -> para poder usar o gitlog no pc univali
 
 git push -> manda pro git
-
-ORDEM: 
+```
+### ORDEM:
+```bash 
 git add . , git commit -m"", git push.
-
+```
 ```java
 public void main (String args[]){
 int i = 0;
