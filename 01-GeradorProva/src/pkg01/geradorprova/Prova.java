@@ -36,10 +36,11 @@ public class Prova {
         return retorno;
 
     }
-    public String infoDiscursiva() {
+   /* public String obtemProvaImpressao()
+    {
         String retorno = "";
-        retorno += 
-    }
+    }*/
+  
 
     /**
      * @return the nomeDisciplina

@@ -12,8 +12,8 @@ import java.util.Scanner;
 public class GeradorProva {
 
         public static void main(String[] args) {
-            String nome,local,data;
-            int peso, disc, obj;
+            String nome,local,data,pergunta,criterioDisc;
+            int peso, disc, obj, pesoPergunta;
             Scanner leitor = new Scanner(System.in);
             //System.out.println("Digite seu peso:");
             //p = leitor.nextFloat();
@@ -37,13 +37,30 @@ public class GeradorProva {
             System.out.println("Digite o numero de questões discursivas: ");
             disc = leitor.nextInt();
             p1.setNumDisc (disc);
+            Discursiva d1 = new Discursiva();
             
-            System.out.println(p1.infos());
+            Discursiva vetorPerguntasDiscursivas[] = new Discursiva[disc];
+            for(int i=0;i<1;i++)
+            {
+                vetorPerguntasDiscursivas[0] = d1;
+                i++;
+            }
             
+            System.out.println("Digite o peso da pergunta ");
+            pesoPergunta = leitor.nextInt();
+            d1.setPeso(pesoPergunta);
+            
+            System.out.println("Digite a pergunta discursiva ");
+            pergunta = leitor.nextLine();
+            d1.setPergunta(pergunta);
+            
+            System.out.println("Digite o criterio de avaliacao da pergunta ");
+            criterioDisc = leitor.nextLine();
+            d1.setCriterios(criterioDisc);
             
             
             System.out.println("Digite o numero de questões discursivas: ");
-            obg = leitor.nextInt();
+            obj = leitor.nextInt();
             p1.setNumObj (obj);
             //forma didatica de printar
             //String retornoDoMetodo = x.obtemDetalhe();
