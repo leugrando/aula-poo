@@ -12,8 +12,8 @@ import java.util.Scanner;
 public class GeradorProva {
 
         public static void main(String[] args) {
-            String nome,local,data,pergunta,criterioDisc;
-            int peso, disc, obj, pesoPergunta;
+            String nome,local,data,perguntaDisc,perguntaObj,criterioDisc;
+            int peso, disc, obj, pesoPerguntaDisc,pesoPerguntaObj;
             Scanner leitor = new Scanner(System.in);
             //System.out.println("Digite seu peso:");
             //p = leitor.nextFloat();
@@ -47,12 +47,12 @@ public class GeradorProva {
             }
             
             System.out.println("Digite o peso da pergunta ");
-            pesoPergunta = leitor.nextInt();
+            pesoPerguntaDisc = leitor.nextInt();
             d1.setPeso(pesoPergunta);
             
             System.out.println("Digite a pergunta discursiva ");
-            pergunta = leitor.nextLine();
-            d1.setPergunta(pergunta);
+            perguntaDisc = leitor.nextLine();
+            d1.setPergunta(perguntaDisc);
             
             System.out.println("Digite o criterio de avaliacao da pergunta ");
             criterioDisc = leitor.nextLine();
@@ -62,6 +62,27 @@ public class GeradorProva {
             System.out.println("Digite o numero de questões discursivas: ");
             obj = leitor.nextInt();
             p1.setNumObj (obj);
+            
+            Objetiva o1 = new Objetiva();
+            System.out.println("Digite a pergunta: ");
+            perguntaObj = leitor.nextLine();
+            o1.setPergunta(perguntaObj);
+            
+            System.out.println("Digite o peso da pergunta ");
+            pesoPerguntaObj = leitor.nextInt();
+            o1.setPeso(pesoPerguntaObj);
+           
+            System.out.println("Digite as 5 alternativas: ");
+            String alternativa[] = new String[5];
+            for(int i=0;i<5;i++)
+            {   
+             alternativa[i] =  leitor.nextLine();
+             //o1.setOpcoes[0](alternativa[i]);
+            }
+            
+           
+            
+            
             //forma didatica de printar
             //String retornoDoMetodo = x.obtemDetalhe();
             //System.out.println(retornoDoMetodo);
