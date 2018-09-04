@@ -29,48 +29,79 @@ public class GeradorProva {
             System.out.println("Digite o peso da prova: ");
             p1.setPeso (leitor.nextInt());
             
+            
             System.out.println("Digite o numero de questões discursivas: ");
             numDisc = leitor.nextInt();
-            p1.setNumDisc(numDisc);
+            leitor.nextLine();
+            System.out.println("");
             
             
-            Discursiva vetorPerguntaDiscursiva[] = new Discursiva[numDisc];
+            
+            
+            Discursiva[] vetorPerguntaDiscursiva;
+            vetorPerguntaDiscursiva = new Discursiva[numDisc];
             for(int i=0;i<numDisc;i++)
             {
-            vetorPerguntaDiscursiva[i] = new Discursiva();
-            System.out.println("Digite o peso da pergunta ");
-            vetorPerguntaDiscursiva[i].setPeso(leitor.nextInt()); 
-           
-            System.out.println("Digite a pergunta discursiva ");
+            /*Discursiva[]*/ vetorPerguntaDiscursiva[i] = new Discursiva();
+            
+            System.out.println("Digite a pergunta discursiva: ");
             vetorPerguntaDiscursiva[i].setPergunta(leitor.nextLine());
-                   
-            System.out.println("Digite o criterio de avaliacao da pergunta ");
-            vetorPerguntaDiscursiva[i].setCriterios(leitor.nextLine()); 
+            System.out.println();
+            
+            System.out.println("Digite o peso da pergunta: ");
+            vetorPerguntaDiscursiva[i].setPeso(leitor.nextInt());
+            leitor.nextLine();
+            System.out.println("");
+            
+            System.out.println("Digite o criterio de avaliacao da pergunta: ");
+            vetorPerguntaDiscursiva[i].setCriterios(leitor.nextLine());
+            
             }
-           
+           p1.setDis(vetorPerguntaDiscursiva);
          
         
-            System.out.println("Digite o numero de questões objetivas ");
+            
+            System.out.println("Digite o numero de questões objetivas: ");
             numObj = leitor.nextInt();
-            Objetiva vetorPerguntaObjetiva[] = new Objetiva[numObj];
-        
+            leitor.nextLine();
+            System.out.println("");
+            Objetiva[] vetorPerguntaObjetiva = new Objetiva[numObj];
+            String[] alternativas = new String[5];
+            
             for (int i=0; i<numObj;i++)
             {
-                vetorPerguntaObjetiva[i] = new Objetiva();
-                System.out.println("Digite a pergunta: ");
-                vetorPerguntaObjetiva[i].setPergunta(leitor.nextLine());   
+                vetorPerguntaObjetiva[i] = new Objetiva();   
             
-                System.out.println("Digite o peso da pergunta ");
+                System.out.println("Digite o peso da pergunta objetiva: ");
                 vetorPerguntaObjetiva[i].setPeso(leitor.nextInt());
-            
-                System.out.println("Digite as 5 alternativas: \n;"+i+1+"-");
-                vetorPerguntaObjetiva[i].setOpcoes[i](leitor.nextLine());
+                System.out.println();
                 
+                System.out.println("Digite a pergunta objetiva: ");
+                vetorPerguntaObjetiva[i].setPergunta(leitor.nextLine());
+                System.out.println();
+                
+                
+                System.out.println("Digite as 5 alternativas: ");
+                
+                for (int j=0;j<5;j++){
+                
+                alternativas[j] = leitor.nextLine();
+               
+                  }
+                vetorPerguntaObjetiva[i].setOpcoes(alternativas);
                 System.out.println("Digite a alternativa correta: ");
-                vetorPerguntaObjetiva[i].setRespostaCorreta(leitor.nextInt()+1);
+                    
+                vetorPerguntaObjetiva[i].setRespostaCorreta(leitor.nextInt());
+                System.out.println("\n");
+                
+                
             }
+            p1.setObj(vetorPerguntaObjetiva);
+            System.out.println(p1.obtemProvaImpressao());
             
             
+            
+                p1.setObj(vetorPerguntaObjetiva);
             
            
             
@@ -86,7 +117,7 @@ public class GeradorProva {
            
             //ou forma resumida
         
-            System.out.println(p1.obtemDetalhe());
+            /*System.out.println(p1.obtemDetalhe());
             Discursiva d = new Discursiva();
             d.setPergunta("Qual e seu nome?");
             d.setPeso(0);
@@ -102,7 +133,7 @@ public class GeradorProva {
             opcoes[4] = "Sao Paulo";
             o.setOpcoes(opcoes);
             o.setRespostaCorreta(3);
-                   
+   */                
             
         }
     }
