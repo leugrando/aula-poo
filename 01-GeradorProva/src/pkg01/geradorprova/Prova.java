@@ -19,8 +19,6 @@ public class Prova {
     private String data;
     private Discursiva[] dis;
     private Objetiva[] obj;
-    private int tamDis;
-    private int tamObj;
 
     public Prova(String nomeDaProva) {
         this.nomeDisciplina = nomeDaProva;
@@ -34,35 +32,27 @@ public class Prova {
         retorno += "Data: " + this.getData() + "\n";
         retorno += "Peso: " + this.getPeso() + "\n";
 
+        for(int i=0;i<this.dis.length; i++){
+//        retorno += "Questao: " +dis[i].getPergunta()+ "\n";
+//        retorno += "Peso da questao: " +dis[i].getPeso()+ "\n";
+//        retorno += "Criterio de avaliacao: " +dis[i].getCriterios()+"\n\n";
+            retorno += this.dis[i].retornaQuestao();
+        
+        }
+        
+        for(int i=0;i<this.obj.length; i++){
+//        retorno += "Questao: " +obj[i].getPergunta()+ "\n";
+//        retorno += "Peso da questao: " +obj[i].getPeso()+ "\n";
+//        retorno += "Opcoes: " +Arrays.toString(obj[i].getOpcoes())+"\n";
+//        retorno += "Alternativa correta: " +obj[i].getRespostaCorreta()+"\n\n";
+//         foi passado direto pra discursiva, agora a responsabilidade de printar esta la
+        retorno += this.obj[i].retornaQuestao();
+        
+        }
         return retorno;
 
     }
     
-    public String printaDiscursivas()
-    {
-        String retorno = "";
-        for(int i=0;i<tamDis;i++){
-        retorno += "Questao: " +dis[i].getPergunta()+ "\n";
-        retorno += "Peso da questao: " +dis[i].getPeso()+ "\n";
-        retorno += "Criterio de avaliacao: " +dis[i].getCriterios()+"\n\n";
-        
-        }
-        return retorno;
-    }
-    
-    public String printaObjetivas()
-    {
-        String retorno = "";
-        for(int i=0;i<tamObj;i++){
-        retorno += "Questao: " +obj[i].getPergunta()+ "\n";
-        retorno += "Peso da questao: " +obj[i].getPeso()+ "\n";
-        retorno += "Opcoes: " +Arrays.toString(obj[i].getOpcoes())+"\n";
-        retorno += "Alternativa correta: " +obj[i].getRespostaCorreta()+"\n\n";
-        
-        }
-        return retorno;
-    }
-
     /**
      * @return the nomeDisciplina
      */
@@ -140,37 +130,6 @@ public class Prova {
      */
     public void setPeso(int peso) {
         this.peso = peso;
-    }
-
-    /**
-     * @param dis the dis to set
-     */
-    /**
-     * @return the tamDis
-     */
-    public int getTamDis() {
-        return tamDis;
-    }
-
-    /**
-     * @param tamDis the tamDis to set
-     */
-    public void setTamDis(int tamDis) {
-        this.tamDis = tamDis;
-    }
-
-    /**
-     * @return the tamObj
-     */
-    public int getTamObj() {
-        return tamObj;
-    }
-
-    /**
-     * @param tamObj the tamObj to set
-     */
-    public void setTamObj(int tamObj) {
-        this.tamObj = tamObj;
     }
 
     /**

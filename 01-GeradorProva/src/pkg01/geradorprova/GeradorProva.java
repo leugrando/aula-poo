@@ -35,7 +35,6 @@ public class GeradorProva {
 
         System.out.println("Digite o numero de questões discursivas: ");
         numDisc = leitor.nextInt();
-        p1.setTamDis(numDisc);
         leitor.nextLine();
         System.out.println("");
 
@@ -63,7 +62,6 @@ public class GeradorProva {
         numObj = leitor.nextInt();
         leitor.nextLine();
         System.out.println("");
-        p1.setTamObj(numObj);
         Objetiva[] vetorPerguntaObjetiva = new Objetiva[numObj];
         String[] alternativas = new String[5];
 
@@ -86,7 +84,6 @@ public class GeradorProva {
                 alternativas[j] = leitor.nextLine();
 
             }
-          
 
             vetorPerguntaObjetiva[i].setOpcoes(alternativas);
             System.out.println("Digite o numero da alternativa correta: ");
@@ -98,12 +95,10 @@ public class GeradorProva {
         }
         p1.setObj(vetorPerguntaObjetiva);
         p1.setDis(vetorPerguntaDiscursiva);
-        
+
         System.out.println(p1.obtemDetalhe());
-        System.out.println(p1.printaDiscursivas());
-        System.out.println(p1.printaObjetivas());
-        
-        
+        //System.out.println(p1.printaDiscursivas());
+        //System.out.println(p1.printaObjetivas());
 
         //forma didatica de printar
         //String retornoDoMetodo = x.obtemDetalhe();

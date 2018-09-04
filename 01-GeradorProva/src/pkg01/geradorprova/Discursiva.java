@@ -27,4 +27,15 @@ final class Discursiva extends Questao {
         this.criterios = criterios;
     }
 
+    @Override
+    public String retornaQuestao() {
+        String retorno = "";
+
+        retorno += "Questao: " + this.getPergunta() + "\n";
+        retorno += "Peso da questao: " + this.getPeso() + "\n";
+        retorno += "Criterio de avaliacao: " + this.getCriterios() + "\n\n";
+
+        return retorno;
+    }
+
 }

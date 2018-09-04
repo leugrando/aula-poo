@@ -5,6 +5,8 @@
  */
 package pkg01.geradorprova;
 
+import java.util.Arrays;
+
 /**
  *
  * @author 6514995
@@ -46,4 +48,14 @@ final class Objetiva extends Questao {
     public void setRespostaCorreta(int RespostaCorreta) {
         this.RespostaCorreta = RespostaCorreta;
     }
+
+    public String retornaQuestao() {
+        String retorno = "";
+        retorno += "Questao: " + this.getPergunta() + "\n";
+        retorno += "Peso da questao: " + this.getPeso() + "\n";
+        retorno += "Opcoes: " + Arrays.toString(this.getOpcoes()) + "\n";
+        retorno += "Alternativa correta: " + this.getRespostaCorreta() + "\n\n";
+        return retorno;
+    }
+
 }
