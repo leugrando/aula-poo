@@ -15,7 +15,6 @@ final class Objetiva extends Questao {
 
     private int RespostaCorreta;
 
-    
     public Objetiva() {
         this.opcoes = new String[5];
     }

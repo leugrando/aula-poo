@@ -9,7 +9,6 @@ package pkg01.geradorprova;
  *
  * @author 6514995
  */
-
 public class Prova {
 
     private String nomeDisciplina;
@@ -17,11 +16,13 @@ public class Prova {
     private String local;
     private String data;
     private Discursiva[] dis;
-    private Objetiva[] obj ;
-            
+    private Objetiva[] obj;
+    private int tamDis;
+    private int tamObj;
+
     public Prova(String nomeDaProva) {
         this.nomeDisciplina = nomeDaProva;
-        
+
     }
 
     public String obtemDetalhe() {
@@ -34,14 +35,6 @@ public class Prova {
         return retorno;
 
     }
-    public String obtemProvaImpressao()
-    {
-        String retorno = "";
-        retorno +="Dis: "+this.getDis()+"\n";
-        retorno +="Obj: "+this.getObj()+"\n";
-       return retorno;
-    }
-  
 
     /**
      * @return the nomeDisciplina
@@ -60,17 +53,6 @@ public class Prova {
     /**
      * @return the peso
      */
-    public int getPeso() {
-        return peso;
-    }
-
-    /**
-     * @param peso the peso to set
-     */
-    public void setPeso(int peso) {
-        this.peso = peso;
-    }
-
     /**
      * @return the local
      */
@@ -109,15 +91,66 @@ public class Prova {
     /**
      * @param dis the dis to set
      */
-    public void setDis(Discursiva[] dis) {
-        this.dis = dis;
-    }
-
     /**
      * @return the obj
      */
     public Objetiva[] getObj() {
         return obj;
+    }
+
+    /**
+     * @param obj the obj to set
+     */
+    /**
+     * @return the peso
+     */
+    public int getPeso() {
+        return peso;
+    }
+
+    /**
+     * @param peso the peso to set
+     */
+    public void setPeso(int peso) {
+        this.peso = peso;
+    }
+
+    /**
+     * @param dis the dis to set
+     */
+    /**
+     * @return the tamDis
+     */
+    public int getTamDis() {
+        return tamDis;
+    }
+
+    /**
+     * @param tamDis the tamDis to set
+     */
+    public void setTamDis(int tamDis) {
+        this.tamDis = tamDis;
+    }
+
+    /**
+     * @return the tamObj
+     */
+    public int getTamObj() {
+        return tamObj;
+    }
+
+    /**
+     * @param tamObj the tamObj to set
+     */
+    public void setTamObj(int tamObj) {
+        this.tamObj = tamObj;
+    }
+
+    /**
+     * @param dis the dis to set
+     */
+    public void setDis(Discursiva[] dis) {
+        this.dis = dis;
     }
 
     /**
@@ -130,8 +163,4 @@ public class Prova {
     /**
      * @return the dis
      */
-    
-       
 }
-
-
