@@ -86,9 +86,10 @@ public class GeradorProva {
                 alternativas[j] = leitor.nextLine();
 
             }
+          
 
             vetorPerguntaObjetiva[i].setOpcoes(alternativas);
-            System.out.println("Digite a alternativa correta: ");
+            System.out.println("Digite o numero da alternativa correta: ");
 
             vetorPerguntaObjetiva[i].setRespostaCorreta(leitor.nextInt());
 
@@ -97,7 +98,10 @@ public class GeradorProva {
         }
         p1.setObj(vetorPerguntaObjetiva);
         p1.setDis(vetorPerguntaDiscursiva);
+        
         System.out.println(p1.obtemDetalhe());
+        System.out.println(p1.printaDiscursivas());
+        System.out.println(p1.printaObjetivas());
         
         
 

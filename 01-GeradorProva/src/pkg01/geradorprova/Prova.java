@@ -5,6 +5,8 @@
  */
 package pkg01.geradorprova;
 
+import java.util.Arrays;
+
 /**
  *
  * @author 6514995
@@ -34,6 +36,31 @@ public class Prova {
 
         return retorno;
 
+    }
+    
+    public String printaDiscursivas()
+    {
+        String retorno = "";
+        for(int i=0;i<tamDis;i++){
+        retorno += "Questao: " +dis[i].getPergunta()+ "\n";
+        retorno += "Peso da questao: " +dis[i].getPeso()+ "\n";
+        retorno += "Criterio de avaliacao: " +dis[i].getCriterios()+"\n\n";
+        
+        }
+        return retorno;
+    }
+    
+    public String printaObjetivas()
+    {
+        String retorno = "";
+        for(int i=0;i<tamObj;i++){
+        retorno += "Questao: " +obj[i].getPergunta()+ "\n";
+        retorno += "Peso da questao: " +obj[i].getPeso()+ "\n";
+        retorno += "Opcoes: " +Arrays.toString(obj[i].getOpcoes())+"\n";
+        retorno += "Alternativa correta: " +obj[i].getRespostaCorreta()+"\n\n";
+        
+        }
+        return retorno;
     }
 
     /**
