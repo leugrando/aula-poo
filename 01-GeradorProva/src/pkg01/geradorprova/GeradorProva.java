@@ -27,13 +27,28 @@ public class GeradorProva {
 
         System.out.println("Digite a data da prova: ");
         p1.setData(leitor.nextLine());
-
+     //   int verif1 =0;
+     //       do{
+      //      try{
         System.out.println("Digite o peso da prova: ");
         p1.setPeso(leitor.nextInt());
-        leitor.nextLine();
+     
+     //   if (leitor.nextInt()<0){
+       //     throw new Exception();
+        //}
+        leitor.nextLine();  
+        
         System.out.println("");
-
-        System.out.println("Digite o numero de questões discursivas: ");
+       //     }catch(Exception e){
+                System.out.println("ERRO");
+         //       verif1 = 1;
+       //     }
+    //}while(verif1 == 1);
+        
+    System.out.println("Digite o tipo de questao que deseja adicionar: ");
+    System.out.println("Digite D para adicionar Discursiva, e O para Objetiva.");
+        
+    System.out.println("Digite o numero de questões discursivas: ");
         numDisc = leitor.nextInt();
         leitor.nextLine();
         System.out.println("");
@@ -87,8 +102,20 @@ public class GeradorProva {
 
             vetorPerguntaObjetiva[i].setOpcoes(alternativas);
             System.out.println("Digite o numero da alternativa correta: ");
-
+            int verif = 0;
+            do{
+                
+            try{
+                
             vetorPerguntaObjetiva[i].setRespostaCorreta(leitor.nextInt());
+            if(leitor.nextInt()>5 || leitor.nextInt()<0)
+            {
+                throw new Exception();
+            }
+            }catch(Exception e){
+                verif = 1;
+            }
+            }while(verif==1);
 
             System.out.println("\n");
 
@@ -97,29 +124,6 @@ public class GeradorProva {
         p1.setDis(vetorPerguntaDiscursiva);
 
         System.out.println(p1.obtemDetalhe());
-        //System.out.println(p1.printaDiscursivas());
-        //System.out.println(p1.printaObjetivas());
-
-        //forma didatica de printar
-        //String retornoDoMetodo = x.obtemDetalhe();
-        //System.out.println(retornoDoMetodo);
-        //ou forma resumida
-        /*System.out.println(p1.obtemDetalhe());
-            Discursiva d = new Discursiva();
-            d.setPergunta("Qual e seu nome?");
-            d.setPeso(0);
-            d.setCriterios("Saber o proprio nome");
-            Objetiva o = new Objetiva();
-            o.setPergunta("Qual o melhor time do Brasil?");
-            o.setPeso(2);
-            String[] opcoes = new String[5];
-            opcoes[0] = "Gremio";
-            opcoes[1] = "Inter";
-            opcoes[2] = "Flamengo";
-            opcoes[3] = "Corinthians";
-            opcoes[4] = "Sao Paulo";
-            o.setOpcoes(opcoes);
-            o.setRespostaCorreta(3);
-         */
+        
     }
 }
