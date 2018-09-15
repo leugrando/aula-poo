@@ -32,27 +32,27 @@ public class Prova {
         retorno += "Data: " + this.getData() + "\n";
         retorno += "Peso: " + this.getPeso() + "\n";
 
-        for(int i=0;i<this.dis.length; i++){
+        for (int i = 0; i < this.dis.length; i++) {
 //        retorno += "Questao: " +dis[i].getPergunta()+ "\n";
 //        retorno += "Peso da questao: " +dis[i].getPeso()+ "\n";
 //        retorno += "Criterio de avaliacao: " +dis[i].getCriterios()+"\n\n";
             retorno += this.dis[i].retornaQuestao();
-        
+
         }
-        
-        for(int i=0;i<this.obj.length; i++){
+
+        for (int i = 0; i < this.obj.length; i++) {
 //        retorno += "Questao: " +obj[i].getPergunta()+ "\n";
 //        retorno += "Peso da questao: " +obj[i].getPeso()+ "\n";
 //        retorno += "Opcoes: " +Arrays.toString(obj[i].getOpcoes())+"\n";
 //        retorno += "Alternativa correta: " +obj[i].getRespostaCorreta()+"\n\n";
 //         foi passado direto pra discursiva, agora a responsabilidade de printar esta la
-        retorno += this.obj[i].retornaQuestao();
-        
+            retorno += this.obj[i].retornaQuestao();
+
         }
         return retorno;
 
     }
-    
+
     /**
      * @return the nomeDisciplina
      */
