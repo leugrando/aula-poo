@@ -36,16 +36,22 @@ public class GeradorProva {
                 p1.setPeso(pesoProva);
 
                 if (pesoProva <= 0) {
-
+                    
                     throw new Exception();
+                   // break;
 
+                }
+                else
+                {
+                    verif1 = 0;
                 }
                 leitor.nextLine(); //limpar buffer
                 System.out.println("");
-            } catch (Exception e) {
+            }catch (Exception e) {
                 System.out.println("ERRO");
+                 
                 verif1 = 1;
-                continue;
+                
 
             }
         } while (verif1 == 1);
@@ -57,14 +63,18 @@ public class GeradorProva {
             do {
                 System.out.println("Digite D para adicionar Discursiva, e O para Objetiva.");
                 opcaoDO = leitor.nextLine();
-
+                
                 try {
-                    if (!"D".equals(opcaoDO) || !"d".equals(opcaoDO) || !"O".equals(opcaoDO) || !"o".equals(opcaoDO)) {
-                        throw new Exception();
-
-                    } else {
+                    if("D".equals(opcaoDO) || "d".equals(opcaoDO) || "O".equals(opcaoDO) || "o".equals(opcaoDO)){
+                        System.out.println("IGUAL");
                         ver = 0;
                     }
+                    else{
+                       System.out.println("DIFERENTE");
+                        throw new Exception();
+                        //break;
+                    }
+                    
 
                 } catch (Exception e) {
                     System.out.println("Erro!!");
@@ -129,16 +139,23 @@ public class GeradorProva {
 
                     vetorPerguntaObjetiva[i].setOpcoes(alternativas);
                     System.out.println("Digite o numero da alternativa correta: ");
+                    int correta = 0;
+                    correta = leitor.nextInt();
+                    leitor.nextLine();
+                    System.out.println("");
+                    
                     int verif = 0;
                     do {
 
                         try {
 
                             vetorPerguntaObjetiva[i].setRespostaCorreta(leitor.nextInt());
-                            if (leitor.nextInt() > 5 || leitor.nextInt() < 0) {
+                            if (correta > 5 || correta < 1) {
                                 throw new Exception();
                             }
+                            
                         } catch (Exception e) {
+                            System.out.println("ERRO");
                             verif = 1;
                         }
                     } while (verif == 1);
