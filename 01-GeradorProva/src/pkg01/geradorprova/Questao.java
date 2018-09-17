@@ -42,5 +42,7 @@ abstract class Questao {
         this.peso = peso;
     }
 
-    public abstract String retornaQuestao(); //polimorfismo, todos q herdam questao tem q ter retorna questao 
+    public abstract String retornaQuestaoProva(); //polimorfismo, todos q herdam questao tem q ter retorna questao 
+
+    public abstract String retornaQuestaoGabarito();
 }

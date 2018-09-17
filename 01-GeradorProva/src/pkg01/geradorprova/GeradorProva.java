@@ -23,13 +23,13 @@ public class GeradorProva {
     public static void main(String[] args) {
 
         Scanner leitor = new Scanner(System.in);
-        String nome, nomeArquivo;
+        String nome, nomeArquivoProva, nomeArquivoGabarito;
 
         System.out.println("Digite o nome da disciplina: ");
         nome = leitor.nextLine();
         Prova p1 = new Prova(nome); //cria a prova p1
 
-        System.out.println("Digite o local da prova: ");
+        System.out.println("Digite a instituicao: ");
         p1.setLocal(leitor.nextLine());
 
         System.out.println("Digite a data da prova: ");
@@ -41,12 +41,12 @@ public class GeradorProva {
             try {
 
                 System.out.println("Digite o peso da prova: ");
-                while (!leitor.hasNextInt()) { //se nao for int nao aceita
+                while (!leitor.hasNextDouble()) { //se nao for double nao aceita
                     System.out.println("NUMERO INVALIDO !!! Digite novamente: ");
                     leitor.nextLine();
 
                 }
-                int pesoProva = leitor.nextInt();
+                double pesoProva = leitor.nextDouble();
                 //System.out.println("TESTE: "+pesoProva);
                 p1.setPeso(pesoProva);
 
@@ -108,11 +108,11 @@ public class GeradorProva {
                 while (verdade == true) {
                     try {
                         System.out.println("Digite o peso da pergunta: ");
-                        while (!leitor.hasNextInt()) {
+                        while (!leitor.hasNextDouble()) {
                             System.out.println("NUMERO INVALIDO !! Digite novamente: ");
                             leitor.nextLine();
                         }
-                        int pesoDis = leitor.nextInt();
+                        double pesoDis = leitor.nextDouble();
                         leitor.nextLine();
                         //System.out.println("");
                         //System.out.println("TESTE: "+pesoDis);
@@ -145,11 +145,12 @@ public class GeradorProva {
                 while (verdade == true) {
                     try {
                         System.out.println("Digite o peso da pergunta objetiva: ");
-                        while (!leitor.hasNextInt()) {
+                        while (!leitor.hasNextDouble()) {
                             System.out.println("NUMERO INVALIDO !!! Digite novamente: ");
                             leitor.nextLine();
                         }
-                        int pesoObj = leitor.nextInt();
+                        double pesoObj = leitor.nextDouble();
+
                         o.setPeso(pesoObj);
                         leitor.nextLine();
                         System.out.println("");
@@ -187,21 +188,30 @@ public class GeradorProva {
 
                     try {
                         System.out.println("Digite o numero da alternativa correta: ");
-                        correta = leitor.nextInt();
-                        leitor.nextLine();
-                        System.out.println("");
 
-                        o.setRespostaCorreta(correta);
-                        if (correta < 6 && correta > 0) {
-                            verdade = false;
-                        } else {
-                            throw new Exception();
+                        while (!leitor.hasNextInt()) {//WHILE DO ERRO
+
+                            System.out.println("NUMERO INVALIDO !! Digite novamente: ");
+                            leitor.nextLine();
+
                         }
 
+                        correta = leitor.nextInt();
+                        leitor.nextLine();
+
+                        if (correta > 1 && correta < 6) {
+                            o.setRespostaCorreta(correta);
+                            verdade = false;
+                        } else {
+
+                            throw new Exception();
+                        }
                     } catch (Exception e) {
-                        System.out.println("ERRO");
+                        System.out.println("ERRO!!! Digite novamente: ");
                         verdade = true;
+
                     }
+
                 }
 
                 System.out.println("\n");
@@ -240,25 +250,25 @@ public class GeradorProva {
         while (verdade == true) {
             try {
                 System.out.println("Digite o nome do arquivo em que deseja salvar a prova: ");
-                nomeArquivo = leitor.nextLine();
-                System.out.println(nomeArquivo);
+                nomeArquivoProva = leitor.nextLine();
+                //System.out.println(nomeArquivoProva);
 
-                File arquivo = new File(nomeArquivo + ".txt");// criação do arquivo txt
+                File arquivo = new File(nomeArquivoProva + ".txt");// criação do arquivo txt
                 if (!arquivo.exists()) // se arquivo n existe cria
                 {
                     arquivo.createNewFile(); // cria arquivo
                     //String linhaAtual = null;
                 }
+                //ESCREVER
                 FileWriter escritor = new FileWriter(arquivo, true); //escreve sempre no fim do arquivo
                 BufferedWriter escrita = new BufferedWriter(escritor);
-
+                //LER
                 FileReader leitura = new FileReader(arquivo);
                 BufferedReader entrada = new BufferedReader(leitura); //buffered é oq esvreve no arquivo
 
-                escrita.write(p1.obtemDetalhe());
+                escrita.write(p1.obtemProva());
                 escrita.close();
                 entrada.close(); //fecha o arquivo
-                System.out.println(p1.obtemDetalhe());
                 verdade = false;
 
                 //System.out.println("Arquivo ja existe ou esta aberto. Tente novamente. ");
@@ -268,5 +278,36 @@ public class GeradorProva {
             }
 
         }
+        verdade = true;
+        while (verdade == true) {
+            try {
+                System.out.println("Digite o nome do arquivo em que deseja salvar o gabarito: ");
+                nomeArquivoGabarito = leitor.nextLine();
+                System.out.println(nomeArquivoGabarito);
+
+                File arquivo2 = new File(nomeArquivoGabarito + ".txt");// criação do arquivo txt
+                if (!arquivo2.exists()) // se arquivo n existe cria
+                {
+                    arquivo2.createNewFile(); // cria arquivo
+                    //String linhaAtual = null;
+                }
+                FileWriter escritor2 = new FileWriter(arquivo2, true); //escreve sempre no fim do arquivo
+                BufferedWriter escrita2 = new BufferedWriter(escritor2);
+
+                FileReader leitura2 = new FileReader(arquivo2);
+                BufferedReader entrada2 = new BufferedReader(leitura2); //buffered é oq esvreve no arquivo
+
+                escrita2.write(p1.obtemGabarito());
+                escrita2.close();
+                entrada2.close(); //fecha o arquivo
+                System.out.println(p1.obtemGabarito());
+                verdade = false;
+
+            } catch (IOException e) {
+                System.out.println("Falha ao manipular arquivo, tente novamente: ");
+
+            }
+        }
     }
+
 }

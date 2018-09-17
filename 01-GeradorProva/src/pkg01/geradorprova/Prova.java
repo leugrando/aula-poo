@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class Prova {
 
     private String nomeDisciplina;
-    private int peso;
+    private double peso;
     private String local;
     private String data;
     //private Discursiva[] dis;
@@ -27,28 +27,41 @@ public class Prova {
 
     }
 
-    public String obtemDetalhe() {
+    public String obtemProva() {
         String retorno = "";
-        retorno += "###########################################INSTITUICAO:" + this.getLocal() + "####################################### " + "\r\n";
+        retorno += "Instituicao: " + this.getLocal() + "\r\n";
         retorno += "Disciplina: " + this.getNomeDisciplina() + "  \r\n";
         retorno += "Data: " + this.getData() + "\r\n";
         retorno += "Peso: " + this.getPeso() + "\r\n";
+        retorno += "######################################################################################################\r\n";
 
         for (int i = 0; i < q.size(); i++) {
 //        retorno += "Questao: " +dis[i].getPergunta()+ "\n";
 //        retorno += "Peso da questao: " +dis[i].getPeso()+ "\n";
 //        retorno += "Criterio de avaliacao: " +dis[i].getCriterios()+"\n\n";
-            retorno += this.q.get(i).retornaQuestao();
+            retorno += (i + 1) + ")  ";
+            retorno += this.q.get(i).retornaQuestaoProva();
+        } 
+
+        return retorno;
+
+    }
+
+    public String obtemGabarito() {
+        String retorno = "";
+        retorno += "Instituicao: " + this.getLocal() + "\r\n";
+        retorno += "Disciplina: " + this.getNomeDisciplina() + "  \r\n";
+        retorno += "Data: " + this.getData() + "\r\n";
+        retorno += "Peso: " + this.getPeso() + "\r\n";
+        retorno += "######################################################################################################\r\n";
+        for (int i = 0; i < q.size(); i++) {
+//        retorno += "Questao: " +dis[i].getPergunta()+ "\n";
+//        retorno += "Peso da questao: " +dis[i].getPeso()+ "\n";
+//        retorno += "Criterio de avaliacao: " +dis[i].getCriterios()+"\n\n";
+            retorno += (i + 1) + ")  ";
+            retorno += this.q.get(i).retornaQuestaoGabarito();
         }
-        /*
-        for (Objetiva obj1 : this.obj) {
-//        retorno += "Questao: " +obj[i].getPergunta()+ "\n";
-//        retorno += "Peso da questao: " +obj[i].getPeso()+ "\n";
-//        retorno += "Opcoes: " +Arrays.toString(obj[i].getOpcoes())+"\n";
-//        retorno += "Alternativa correta: " +obj[i].getRespostaCorreta()+"\n\n";
-//         foi passado direto pra discursiva, agora a responsabilidade de printar esta la
-            retorno += obj1.retornaQuestao();
-        }*/
+
         return retorno;
 
     }
@@ -107,14 +120,14 @@ public class Prova {
     /**
      * @return the peso
      */
-    public int getPeso() {
+    public double getPeso() {
         return peso;
     }
 
     /**
      * @param peso the peso to set
      */
-    public void setPeso(int peso) {
+    public void setPeso(double peso) {
         this.peso = peso;
     }
 

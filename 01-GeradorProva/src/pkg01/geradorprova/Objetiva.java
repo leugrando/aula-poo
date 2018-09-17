@@ -52,12 +52,31 @@ final class Objetiva extends Questao {
 
     @Override
 
-    public String retornaQuestao() {
+    public String retornaQuestaoProva() {
         String retorno = "";
         String[] auxiliar = new String[5];
         auxiliar = this.getOpcoes();
 
-        retorno += "Questao: (Peso " + this.getPeso() + ") " + this.getPergunta() + "\r\n";
+        retorno += "(Peso " + this.getPeso() + ") " + this.getPergunta() + "\r\n";
+
+        retorno += "a) " + auxiliar[0] + "\r\n";
+        retorno += "b) " + auxiliar[1] + "\r\n";
+        retorno += "c) " + auxiliar[2] + "\r\n";
+        retorno += "d) " + auxiliar[3] + "\r\n";
+        retorno += "e) " + auxiliar[4] + "\r\n\r\n";
+
+        //retorno += "Alternativa correta: " + this.getRespostaCorreta() + "\r\n\r\n";
+        return retorno;
+
+    }
+
+    @Override
+    public String retornaQuestaoGabarito() {
+        String retorno = "";
+        String[] auxiliar = new String[5];
+        auxiliar = this.getOpcoes();
+
+        retorno += "(Peso " + this.getPeso() + ") " + this.getPergunta() + "\r\n";
 
         retorno += "a) " + auxiliar[0] + "\r\n";
         retorno += "b) " + auxiliar[1] + "\r\n";
@@ -65,7 +84,7 @@ final class Objetiva extends Questao {
         retorno += "d) " + auxiliar[3] + "\r\n";
         retorno += "e) " + auxiliar[4] + "\r\n";
 
-        retorno += "Alternativa correta: " + this.getRespostaCorreta() + "\r\n\r\n";
+        retorno += "Alternativa correta: " + this.getRespostaCorreta() + "\r\n\r\n\r\n";
         return retorno;
     }
 

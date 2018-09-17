@@ -28,14 +28,27 @@ final class Discursiva extends Questao {
     }
 
     @Override
-    public String retornaQuestao() {
+    public String retornaQuestaoProva() {
         String retorno = "";
 
-        retorno += "Questao 1 (Peso " + this.getPeso() + ")" + this.getPergunta() + "\r\n";
-        retorno += "Resposta: ________________________________________________________________________\r\n"
-                + "__________________________________________________________________________________\r\n______"
-                + "____________________________________________________________________________\r\n";
-        retorno += "Criterio de avaliacao: " + this.getCriterios() + "\r\n\r\n";
+        retorno += "(Peso " + this.getPeso() + ") " + this.getPergunta() + "\r\n";
+        retorno += "Resposta: __________________________________________________________________________________\r\n"
+                + "____________________________________________________________________________________________\r\n______"
+                + "______________________________________________________________________________________\r\n\r\n\r\n";
+        //retorno += "Criterio de avaliacao: " + this.getCriterios() + "\r\n\r\n";
+
+        return retorno;
+    }
+
+    @Override
+    public String retornaQuestaoGabarito() { 
+        String retorno = "";
+
+        retorno += "(Peso " + this.getPeso() + ") " + this.getPergunta() + "\r\n";
+        retorno += "Resposta: __________________________________________________________________________________\r\n"
+                + "____________________________________________________________________________________________\r\n______"
+                + "______________________________________________________________________________________\r\n";
+        retorno += "Criterio de avaliacao: " + this.getCriterios() + "\r\n\r\n\r\n";
 
         return retorno;
     }
