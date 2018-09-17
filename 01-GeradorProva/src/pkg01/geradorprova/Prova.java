@@ -5,6 +5,7 @@
  */
 package pkg01.geradorprova;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -19,6 +20,7 @@ public class Prova {
     private String data;
     private Discursiva[] dis;
     private Objetiva[] obj;
+    private ArrayList q;
 
     public Prova(String nomeDaProva) {
         this.nomeDisciplina = nomeDaProva;
@@ -142,6 +144,20 @@ public class Prova {
      */
     public void setObj(Objetiva[] obj) {
         this.obj = obj;
+    }
+
+    /**
+     * @return the q
+     */
+    public ArrayList getQ() {
+        return q;
+    }
+
+    /**
+     * @param q the q to set
+     */
+    public void setQ(ArrayList q) {
+        this.q = q;
     }
 
     /**

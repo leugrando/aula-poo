@@ -5,6 +5,7 @@
  */
 package pkg01.geradorprova;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -14,11 +15,10 @@ import java.util.Scanner;
 public class GeradorProva {
 
     public static void main(String[] args) {
-        
+
         Scanner leitor = new Scanner(System.in);
         String nome, nomeArquivo;
         int numObj, numDisc;
-        
 
         System.out.println("Digite o nome da disciplina: ");
         nome = leitor.nextLine();
@@ -34,12 +34,12 @@ public class GeradorProva {
         while (verdade == true) {
 
             try {
-                
+
                 System.out.println("Digite o peso da prova: ");
-                while (!leitor.hasNextInt()) {  
-                System.out.println("NUMERO INVALIDO !!! Digite novamente: ");
-                leitor.nextLine();
-                
+                while (!leitor.hasNextInt()) {
+                    System.out.println("NUMERO INVALIDO !!! Digite novamente: ");
+                    leitor.nextLine();
+
                 }
                 int pesoProva = leitor.nextInt();
                 //System.out.println("TESTE: "+pesoProva);
@@ -66,6 +66,7 @@ public class GeradorProva {
         String opcaoDO = "", addQuestao = "";
 
         int verifica = 0;
+        ArrayList<Questao> q = new ArrayList<Questao>();
         System.out.println("Digite o tipo de questao que deseja adicionar: ");
         do {
             verdade = true;
@@ -91,128 +92,125 @@ public class GeradorProva {
             }
             verdade = true;
             if ("D".equals(opcaoDO) || "d".equals(opcaoDO)) {
-                System.out.println("Digite o numero de questões discursivas: ");
+                /*System.out.println("Digite o numero de questões discursivas: ");
                 numDisc = leitor.nextInt();
                 leitor.nextLine();
                 System.out.println("");
+                 */
+                Discursiva d = new Discursiva();
+                //Discursiva[] vetorPerguntaDiscursiva;
+                //vetorPerguntaDiscursiva = new Discursiva[numDisc];
+                //for (int i = 0; i < numDisc; i++) {
+                //  vetorPerguntaDiscursiva[i] = new Discursiva();
 
-                Discursiva[] vetorPerguntaDiscursiva;
-                vetorPerguntaDiscursiva = new Discursiva[numDisc];
-                for (int i = 0; i < numDisc; i++) {
-                    vetorPerguntaDiscursiva[i] = new Discursiva();
+                System.out.println("Digite a pergunta discursiva: ");
+                //vetorPerguntaDiscursiva[i].setPergunta(leitor.nextLine());
+                d.setPergunta(leitor.nextLine());
+                System.out.println();
 
-                    System.out.println("Digite a pergunta discursiva: ");
-                    vetorPerguntaDiscursiva[i].setPergunta(leitor.nextLine());
-                    System.out.println();
-
-                    while (verdade == true) {
-                        try {
-                            System.out.println("Digite o peso da pergunta: ");
-                            while (!leitor.hasNextInt()) {
-                                System.out.println("NUMERO INVALIDO !! Digite novamente: ");
-                                leitor.nextLine();
-                            }
-                            int pesoDis = leitor.nextInt();
+                while (verdade == true) {
+                    try {
+                        System.out.println("Digite o peso da pergunta: ");
+                        while (!leitor.hasNextInt()) {
+                            System.out.println("NUMERO INVALIDO !! Digite novamente: ");
                             leitor.nextLine();
-                            //System.out.println("");
-                            //System.out.println("TESTE: "+pesoDis);
-                            vetorPerguntaDiscursiva[i].setPeso(pesoDis);
-                            
-                            if (pesoDis > 0) {
-                                verdade = false;
-                            }
-                            else {
-                                verdade = true;
-                                throw new Exception();
-                                
-                            }
-                        } catch (Exception e) {
-                            System.out.println("ERRO !");
-                            verdade = true;
                         }
+                        int pesoDis = leitor.nextInt();
+                        leitor.nextLine();
+                        //System.out.println("");
+                        //System.out.println("TESTE: "+pesoDis);
+                        //vetorPerguntaDiscursiva[i].setPeso(pesoDis);
+
+                        if (pesoDis > 0) {
+                            verdade = false;
+                            d.setPeso(pesoDis);
+                        } else {
+                            verdade = true;
+                            throw new Exception();
+
+                        }
+                    } catch (Exception e) {
+                        System.out.println("ERRO !");
+                        verdade = true;
                     }
 
-                    System.out.println("Digite o criterio de avaliacao da pergunta: ");
-                    vetorPerguntaDiscursiva[i].setCriterios(leitor.nextLine());
-
                 }
-                p1.setDis(vetorPerguntaDiscursiva);
+                System.out.println("Digite o criterio de avaliacao da pergunta: ");
+                //vetorPerguntaDiscursiva[i].setCriterios(leitor.nextLine());
+                d.setCriterios(leitor.nextLine());
 
+                //}
+                //p1.setDis(vetorPerguntaDiscursiva);
+                q.add(d);
             } else {
+                Objetiva o = new Objetiva();
 
-                System.out.println("Digite o numero de questões objetivas: ");
-                numObj = leitor.nextInt();
-                leitor.nextLine();
-                System.out.println("");
-                Objetiva[] vetorPerguntaObjetiva = new Objetiva[numObj];
                 String[] alternativas = new String[5];
-
-                for (int i = 0; i < numObj; i++) {
-                    vetorPerguntaObjetiva[i] = new Objetiva();
-                    while (verdade == true) {
-                        try {
-                            System.out.println("Digite o peso da pergunta objetiva: ");
-                            while (!leitor.hasNextInt()) {
+                while (verdade == true) {
+                    try {
+                        System.out.println("Digite o peso da pergunta objetiva: ");
+                        while (!leitor.hasNextInt()) {
                             System.out.println("NUMERO INVALIDO !!! Digite novamente: ");
-                            leitor.nextLine(); 
-                            }
-                            int pesoObj = leitor.nextInt();
                             leitor.nextLine();
-                            System.out.println("");
-                            //System.out.println("TESTE: "+pesoObj);
-                            vetorPerguntaObjetiva[i].setPeso(pesoObj);
-                            if (pesoObj > 0) {
-                                verdade = false;
-                            } else {
-                                verdade = true;
-                                throw new Exception();
-                            }
-                        } catch (Exception e) {
-                            System.out.println("ERRO !");
-                            verdade = true;
                         }
+                        int pesoObj = leitor.nextInt();
+                        o.setPeso(pesoObj);
+                        leitor.nextLine();
+                        System.out.println("");
+                        //System.out.println("TESTE: "+pesoObj);
 
-                    }
-                    System.out.println("Digite a pergunta objetiva: ");
-                    vetorPerguntaObjetiva[i].setPergunta(leitor.nextLine());
-                    System.out.println();
-
-                    System.out.println("Digite as 5 alternativas: ");
-
-                    for (int j = 0; j < 5; j++) {
-
-                        alternativas[j] = leitor.nextLine();
-
-                    }
-
-                    vetorPerguntaObjetiva[i].setOpcoes(alternativas);
-
-                    verdade = true;
-                    int correta = 0;
-                    while (verdade == true) {
-
-                        try {
-                            System.out.println("Digite o numero da alternativa correta: ");
-                            correta = leitor.nextInt();
-                            leitor.nextLine();
-                            System.out.println("");
-
-                            vetorPerguntaObjetiva[i].setRespostaCorreta(correta);
-                            if (correta < 6 && correta > 0) {
-                                verdade = false;
-                            } else {
-                                throw new Exception();
-                            }
-
-                        } catch (Exception e) {
-                            System.out.println("ERRO");
+                        if (pesoObj > 0) {
+                            verdade = false;
+                        } else {
                             verdade = true;
+                            throw new Exception();
                         }
+                    } catch (Exception e) {
+                        System.out.println("ERRO !");
+                        verdade = true;
                     }
 
-                    System.out.println("\n");
-                    p1.setObj(vetorPerguntaObjetiva);
                 }
+                System.out.println("Digite a pergunta objetiva: ");
+                o.setPergunta(leitor.nextLine());
+                System.out.println();
+
+                System.out.println("Digite as 5 alternativas: ");
+
+                for (int j = 0; j < 5; j++) {
+
+                    alternativas[j] = leitor.nextLine();
+
+                }
+
+                o.setOpcoes(alternativas);
+
+                verdade = true;
+                int correta = 0;
+                while (verdade == true) {
+
+                    try {
+                        System.out.println("Digite o numero da alternativa correta: ");
+                        correta = leitor.nextInt();
+                        leitor.nextLine();
+                        System.out.println("");
+
+                        o.setRespostaCorreta(correta);
+                        if (correta < 6 && correta > 0) {
+                            verdade = false;
+                        } else {
+                            throw new Exception();
+                        }
+
+                    } catch (Exception e) {
+                        System.out.println("ERRO");
+                        verdade = true;
+                    }
+                }
+
+                System.out.println("\n");
+
+                q.add(o);
             }
 
             verdade = true;
@@ -241,12 +239,15 @@ public class GeradorProva {
             }
 
         } while (verifica == 0);
-        
+        p1.setQ(q);
         System.out.println("Digite o nome do arquivo em que deseja salvar a prova: ");
         nomeArquivo = leitor.nextLine();
         System.out.println(nomeArquivo);
-        System.out.println(p1.obtemDetalhe());
-        System.exit(0);
+        //System.out.println(p1.obtemDetalhe());
+        for (int i = 0; i < q.size(); i++) {
+            System.out.println(q.get(i));
+        }
+        //System.exit(0);
     }
-    
+
 }
