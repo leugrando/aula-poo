@@ -14,9 +14,11 @@ import java.util.Scanner;
 public class GeradorProva {
 
     public static void main(String[] args) {
-        String nome;
-        int numObj, numDisc;
+        
         Scanner leitor = new Scanner(System.in);
+        String nome, nomeArquivo;
+        int numObj, numDisc;
+        
 
         System.out.println("Digite o nome da disciplina: ");
         nome = leitor.nextLine();
@@ -32,9 +34,15 @@ public class GeradorProva {
         while (verdade == true) {
 
             try {
+                
                 System.out.println("Digite o peso da prova: ");
-                int pesoProva;
-                pesoProva = leitor.nextInt();
+                while (!leitor.hasNextInt()) {  
+                System.out.println("NUMERO INVALIDO !!! Digite novamente: ");
+                leitor.nextLine();
+                
+                }
+                int pesoProva = leitor.nextInt();
+                //System.out.println("TESTE: "+pesoProva);
                 p1.setPeso(pesoProva);
 
                 if (pesoProva <= 0) {
@@ -67,10 +75,10 @@ public class GeradorProva {
 
                 try {
                     if ("D".equals(opcaoDO) || "d".equals(opcaoDO) || "O".equals(opcaoDO) || "o".equals(opcaoDO)) {
-                        System.out.println("IGUAL");
+                        //System.out.println("IGUAL");
                         verdade = false;
                     } else {
-                        System.out.println("DIFERENTE");
+                        //System.out.println("DIFERENTE");
                         verdade = true;
                         throw new Exception();
                         //break;
@@ -100,17 +108,23 @@ public class GeradorProva {
                     while (verdade == true) {
                         try {
                             System.out.println("Digite o peso da pergunta: ");
-                            int pesoDis;
-                            pesoDis = leitor.nextInt();
+                            while (!leitor.hasNextInt()) {
+                                System.out.println("NUMERO INVALIDO !! Digite novamente: ");
+                                leitor.nextLine();
+                            }
+                            int pesoDis = leitor.nextInt();
                             leitor.nextLine();
-                            System.out.println("");
+                            //System.out.println("");
+                            //System.out.println("TESTE: "+pesoDis);
                             vetorPerguntaDiscursiva[i].setPeso(pesoDis);
-
-                            if (pesoDis > 0 && pesoDis < 6) {
+                            
+                            if (pesoDis > 0) {
                                 verdade = false;
-                            } else {
+                            }
+                            else {
                                 verdade = true;
                                 throw new Exception();
+                                
                             }
                         } catch (Exception e) {
                             System.out.println("ERRO !");
@@ -138,12 +152,16 @@ public class GeradorProva {
                     while (verdade == true) {
                         try {
                             System.out.println("Digite o peso da pergunta objetiva: ");
-                            int pesoObj;
-                            pesoObj = leitor.nextInt();
+                            while (!leitor.hasNextInt()) {
+                            System.out.println("NUMERO INVALIDO !!! Digite novamente: ");
+                            leitor.nextLine(); 
+                            }
+                            int pesoObj = leitor.nextInt();
                             leitor.nextLine();
                             System.out.println("");
+                            //System.out.println("TESTE: "+pesoObj);
                             vetorPerguntaObjetiva[i].setPeso(pesoObj);
-                            if (pesoObj > 0 && pesoObj < 6) {
+                            if (pesoObj > 0) {
                                 verdade = false;
                             } else {
                                 verdade = true;
@@ -220,11 +238,15 @@ public class GeradorProva {
                 verifica = 0;
             } else {
                 verifica = 1;
-                System.out.println(p1.obtemDetalhe());
             }
 
         } while (verifica == 0);
-
-        //System.exit(1);
+        
+        System.out.println("Digite o nome do arquivo em que deseja salvar a prova: ");
+        nomeArquivo = leitor.nextLine();
+        System.out.println(nomeArquivo);
+        System.out.println(p1.obtemDetalhe());
+        System.exit(0);
     }
+    
 }
