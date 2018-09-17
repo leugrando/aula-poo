@@ -18,9 +18,9 @@ public class Prova {
     private int peso;
     private String local;
     private String data;
-    private Discursiva[] dis;
-    private Objetiva[] obj;
-    private ArrayList q;
+    //private Discursiva[] dis;
+    //private Objetiva[] obj;
+    private ArrayList<Questao> q;
 
     public Prova(String nomeDaProva) {
         this.nomeDisciplina = nomeDaProva;
@@ -29,18 +29,18 @@ public class Prova {
 
     public String obtemDetalhe() {
         String retorno = "";
-        retorno += "Nome: " + this.getNomeDisciplina() + "\n";
-        retorno += "Local: " + this.getLocal() + "\n";
-        retorno += "Data: " + this.getData() + "\n";
-        retorno += "Peso: " + this.getPeso() + "\n";
+        retorno += "###########################################INSTITUICAO:" + this.getLocal() + "####################################### " + "\r\n";
+        retorno += "Disciplina: " + this.getNomeDisciplina() + "  \r\n";
+        retorno += "Data: " + this.getData() + "\r\n";
+        retorno += "Peso: " + this.getPeso() + "\r\n";
 
-        for (Discursiva di : this.dis) {
+        for (int i = 0; i < q.size(); i++) {
 //        retorno += "Questao: " +dis[i].getPergunta()+ "\n";
 //        retorno += "Peso da questao: " +dis[i].getPeso()+ "\n";
 //        retorno += "Criterio de avaliacao: " +dis[i].getCriterios()+"\n\n";
-            retorno += di.retornaQuestao();
+            retorno += this.q.get(i).retornaQuestao();
         }
-
+        /*
         for (Objetiva obj1 : this.obj) {
 //        retorno += "Questao: " +obj[i].getPergunta()+ "\n";
 //        retorno += "Peso da questao: " +obj[i].getPeso()+ "\n";
@@ -48,7 +48,7 @@ public class Prova {
 //        retorno += "Alternativa correta: " +obj[i].getRespostaCorreta()+"\n\n";
 //         foi passado direto pra discursiva, agora a responsabilidade de printar esta la
             retorno += obj1.retornaQuestao();
-        }
+        }*/
         return retorno;
 
     }
@@ -101,20 +101,6 @@ public class Prova {
     /**
      * @return the dis
      */
-    public Discursiva[] getDis() {
-        return dis;
-    }
-
-    /**
-     * @param dis the dis to set
-     */
-    /**
-     * @return the obj
-     */
-    public Objetiva[] getObj() {
-        return obj;
-    }
-
     /**
      * @param obj the obj to set
      */
@@ -135,31 +121,23 @@ public class Prova {
     /**
      * @param dis the dis to set
      */
-    public void setDis(Discursiva[] dis) {
-        this.dis = dis;
-    }
-
-    /**
-     * @param obj the obj to set
-     */
-    public void setObj(Objetiva[] obj) {
-        this.obj = obj;
-    }
-
     /**
      * @return the q
      */
-    public ArrayList getQ() {
+    public ArrayList<Questao> getQ() {
         return q;
     }
 
     /**
      * @param q the q to set
      */
-    public void setQ(ArrayList q) {
+    public void setQ(ArrayList<Questao> q) {
         this.q = q;
     }
 
+    /**
+     * @return the q
+     */
     /**
      * @return the dis
      */
