@@ -41,7 +41,7 @@ public class Prova {
 //        retorno += "Criterio de avaliacao: " +dis[i].getCriterios()+"\n\n";
             retorno += (i + 1) + ")  ";
             retorno += this.q.get(i).retornaQuestaoProva();
-        } 
+        }S
 
         return retorno;
 

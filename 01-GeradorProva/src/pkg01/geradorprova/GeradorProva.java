@@ -13,6 +13,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -21,9 +25,9 @@ import java.io.IOException;
 public class GeradorProva {
 
     public static void main(String[] args) {
-
+        boolean verdade = true; // verificacao p consistencia
         Scanner leitor = new Scanner(System.in);
-        String nome, nomeArquivoProva, nomeArquivoGabarito;
+        String nome, Data, nomeArquivoProva, nomeArquivoGabarito;
 
         System.out.println("Digite o nome da disciplina: ");
         nome = leitor.nextLine();
@@ -31,11 +35,28 @@ public class GeradorProva {
 
         System.out.println("Digite a instituicao: ");
         p1.setLocal(leitor.nextLine());
-
         System.out.println("Digite a data da prova: ");
-        p1.setData(leitor.nextLine());
+        while (verdade == true) {
 
-        boolean verdade = true; // verificacao p consistencia
+            try {
+
+                Data = leitor.nextLine();
+                p1.setData(Data);
+                DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                Date dt = df.parse(Data);
+                verdade = false;
+
+            } catch (Exception e) {
+                verdade = true;
+                System.out.println("Erro na data !!!");
+                System.out.println("Digite uma data correta no formato do exemplo a seguir: 10/05/2000. ");
+            }
+        }
+
+        double contPeso = 0, pesoProva = 0;
+        boolean verPeso = true;
+
+        verdade = true;
         while (verdade == true) {
 
             try {
@@ -46,7 +67,7 @@ public class GeradorProva {
                     leitor.nextLine();
 
                 }
-                double pesoProva = leitor.nextDouble();
+                pesoProva = leitor.nextDouble();
                 //System.out.println("TESTE: "+pesoProva);
                 p1.setPeso(pesoProva);
 
@@ -71,181 +92,195 @@ public class GeradorProva {
         String opcaoDO = "", addQuestao = "";
 
         int verifica = 0;
-        ArrayList<Questao> q = new ArrayList<>(); // cria arraylist de questao
-        System.out.println("Digite o tipo de questao que deseja adicionar: ");
-        do {
-            verdade = true;
-            while (verdade == true) {
-                System.out.println("Digite D para adicionar Discursiva, e O para Objetiva.");
-                opcaoDO = leitor.nextLine();
+        //ArrayList<Questao> q = new ArrayList<>(); // cria arraylist de questao
+        do {//DO PARA COMPARAR PESOS
+            ArrayList<Questao> q = new ArrayList<>(); // cria arraylist de questao
+            System.out.println("Digite o tipo de questao que deseja adicionar: ");
+            do {
+                verdade = true;
+                while (verdade == true) {
+                    System.out.println("Digite D para adicionar Discursiva, e O para Objetiva.");
+                    opcaoDO = leitor.nextLine();
 
-                try {
-                    if ("D".equals(opcaoDO) || "d".equals(opcaoDO) || "O".equals(opcaoDO) || "o".equals(opcaoDO)) { //verifica o que foi digitado
-                        //System.out.println("IGUAL");
-                        verdade = false;
-                    } else {
-                        //System.out.println("DIFERENTE");
+                    try {
+                        if ("D".equals(opcaoDO) || "d".equals(opcaoDO) || "O".equals(opcaoDO) || "o".equals(opcaoDO)) { //verifica o que foi digitado
+                            //System.out.println("IGUAL");
+                            verdade = false;
+                        } else {
+                            //System.out.println("DIFERENTE");
+                            verdade = true;
+                            throw new Exception();
+                            //break;
+                        }
+
+                    } catch (Exception e) {
+                        System.out.println("Erro!!");
                         verdade = true;
-                        throw new Exception();
-                        //break;
+                    }
+                }
+                verdade = true;
+                if ("D".equals(opcaoDO) || "d".equals(opcaoDO)) { //verificacao p questao
+
+                    Discursiva d = new Discursiva();
+
+                    System.out.println("Digite a pergunta discursiva: ");
+
+                    d.setPergunta(leitor.nextLine());
+                    System.out.println();
+
+                    while (verdade == true) {
+                        try {
+                            System.out.println("Digite o peso da pergunta: ");
+                            while (!leitor.hasNextDouble()) {
+                                System.out.println("NUMERO INVALIDO !! Digite novamente: ");
+                                leitor.nextLine();
+                            }
+                            double pesoDis = leitor.nextDouble();
+                            leitor.nextLine();
+                            //System.out.println("");
+                            //System.out.println("TESTE: "+pesoDis);
+                            contPeso += pesoDis;
+                            if (pesoDis > 0) {//nao aceita peso negativo
+                                verdade = false;
+                                d.setPeso(pesoDis);
+                            } else {
+                                verdade = true;
+                                throw new Exception();
+
+                            }
+                        } catch (Exception e) {
+                            System.out.println("ERRO !");
+                            verdade = true;
+                        }
+
+                    }
+                    System.out.println("Digite o criterio de avaliacao da pergunta: ");
+
+                    d.setCriterios(leitor.nextLine());
+
+                    //}
+                    //p1.setDis(vetorPerguntaDiscursiva);
+                    q.add(d);
+                } else {
+                    Objetiva o = new Objetiva();
+
+                    String[] alternativas = new String[5];
+                    while (verdade == true) {
+                        try {
+                            System.out.println("Digite o peso da pergunta objetiva: ");
+                            while (!leitor.hasNextDouble()) {
+                                System.out.println("NUMERO INVALIDO !!! Digite novamente: ");
+                                leitor.nextLine();
+                            }
+                            double pesoObj = leitor.nextDouble();
+
+                            o.setPeso(pesoObj);
+                            leitor.nextLine();
+                            System.out.println("");
+                            //System.out.println("TESTE: "+pesoObj);
+                            contPeso += pesoObj;
+                            if (pesoObj > 0) {
+                                verdade = false;
+                            } else {
+                                verdade = true;
+                                throw new Exception();
+                            }
+                        } catch (Exception e) {
+                            System.out.println("ERRO !");
+                            verdade = true;
+                        }
+
+                    }
+                    System.out.println("Digite a pergunta objetiva: ");
+                    o.setPergunta(leitor.nextLine());
+                    System.out.println();
+
+                    System.out.println("Digite as 5 alternativas: ");
+
+                    for (int j = 0; j < 5; j++) {
+
+                        alternativas[j] = leitor.nextLine();
+
                     }
 
-                } catch (Exception e) {
-                    System.out.println("Erro!!");
+                    o.setOpcoes(alternativas);
+
                     verdade = true;
-                }
-            }
-            verdade = true;
-            if ("D".equals(opcaoDO) || "d".equals(opcaoDO)) { //verificacao p questao
+                    int correta = 0;
+                    while (verdade == true) {
 
-                Discursiva d = new Discursiva();
+                        try {
+                            System.out.println("Digite o numero da alternativa correta: ");
 
-                System.out.println("Digite a pergunta discursiva: ");
+                            while (!leitor.hasNextInt()) {//WHILE DO ERRO
 
-                d.setPergunta(leitor.nextLine());
-                System.out.println();
+                                System.out.println("NUMERO INVALIDO !! Digite novamente: ");
+                                leitor.nextLine();
 
-                while (verdade == true) {
-                    try {
-                        System.out.println("Digite o peso da pergunta: ");
-                        while (!leitor.hasNextDouble()) {
-                            System.out.println("NUMERO INVALIDO !! Digite novamente: ");
+                            }
+
+                            correta = leitor.nextInt();
+                            System.out.println("teste = " + correta);
                             leitor.nextLine();
-                        }
-                        double pesoDis = leitor.nextDouble();
-                        leitor.nextLine();
-                        //System.out.println("");
-                        //System.out.println("TESTE: "+pesoDis);
+                            System.out.println("");
+                            if (correta > 0 && correta < 6) {
+                                o.setRespostaCorreta(correta);
+                                verdade = false;
+                            } else {
 
-                        if (pesoDis > 0) {//nao aceita peso negativo
-                            verdade = false;
-                            d.setPeso(pesoDis);
-                        } else {
+                                throw new Exception();
+                            }
+                        } catch (Exception e) {
+                            System.out.println("ERRO!!! Digite novamente: ");
                             verdade = true;
-                            throw new Exception();
 
                         }
-                    } catch (Exception e) {
-                        System.out.println("ERRO !");
-                        verdade = true;
+
                     }
 
+                    System.out.println("\n");
+
+                    q.add(o); // add questao no arraylist
                 }
-                System.out.println("Digite o criterio de avaliacao da pergunta: ");
-
-                d.setCriterios(leitor.nextLine());
-
-                //}
-                //p1.setDis(vetorPerguntaDiscursiva);
-                q.add(d);
-            } else {
-                Objetiva o = new Objetiva();
-
-                String[] alternativas = new String[5];
-                while (verdade == true) {
-                    try {
-                        System.out.println("Digite o peso da pergunta objetiva: ");
-                        while (!leitor.hasNextDouble()) {
-                            System.out.println("NUMERO INVALIDO !!! Digite novamente: ");
-                            leitor.nextLine();
-                        }
-                        double pesoObj = leitor.nextDouble();
-
-                        o.setPeso(pesoObj);
-                        leitor.nextLine();
-                        System.out.println("");
-                        //System.out.println("TESTE: "+pesoObj);
-
-                        if (pesoObj > 0) {
-                            verdade = false;
-                        } else {
-                            verdade = true;
-                            throw new Exception();
-                        }
-                    } catch (Exception e) {
-                        System.out.println("ERRO !");
-                        verdade = true;
-                    }
-
-                }
-                System.out.println("Digite a pergunta objetiva: ");
-                o.setPergunta(leitor.nextLine());
-                System.out.println();
-
-                System.out.println("Digite as 5 alternativas: ");
-
-                for (int j = 0; j < 5; j++) {
-
-                    alternativas[j] = leitor.nextLine();
-
-                }
-
-                o.setOpcoes(alternativas);
 
                 verdade = true;
-                int correta = 0;
                 while (verdade == true) {
-
                     try {
-                        System.out.println("Digite o numero da alternativa correta: ");
+                        System.out.println("Deseja adicionar mais alguma questao? S para sim e N para nao: ");
+                        addQuestao = leitor.nextLine();
 
-                        while (!leitor.hasNextInt()) {//WHILE DO ERRO
-
-                            System.out.println("NUMERO INVALIDO !! Digite novamente: ");
-                            leitor.nextLine();
-
-                        }
-
-                        correta = leitor.nextInt();
-                        leitor.nextLine();
-
-                        if (correta > 1 && correta < 6) {
-                            o.setRespostaCorreta(correta);
+                        if ("S".equals(addQuestao) || "s".equals(addQuestao) || "N".equals(addQuestao) || "n".equals(addQuestao)) {
                             verdade = false;
                         } else {
-
+                            verdade = true;
                             throw new Exception();
                         }
                     } catch (Exception e) {
-                        System.out.println("ERRO!!! Digite novamente: ");
+                        System.out.println("Caracter nao aceito. ");
                         verdade = true;
 
                     }
-
                 }
 
-                System.out.println("\n");
-
-                q.add(o); // add questao no arraylist
-            }
-
-            verdade = true;
-            while (verdade == true) {
-                try {
-                    System.out.println("Deseja adicionar mais alguma questao? S para sim e N para nao: ");
-                    addQuestao = leitor.nextLine();
-
-                    if ("S".equals(addQuestao) || "s".equals(addQuestao) || "N".equals(addQuestao) || "n".equals(addQuestao)) {
-                        verdade = false;
-                    } else {
-                        verdade = true;
-                        throw new Exception();
-                    }
-                } catch (Exception e) {
-                    System.out.println("Caracter nao aceito. ");
-                    verdade = true;
-
+                if ("S".equals(addQuestao) || "s".equals(addQuestao)) {
+                    verifica = 0;
+                } else {
+                    verifica = 1;
                 }
-            }
 
-            if ("S".equals(addQuestao) || "s".equals(addQuestao)) {
-                verifica = 0;
+            } while (verifica == 0);
+
+            if (contPeso == pesoProva) {
+                verPeso = true;
+                p1.setQ(q); // add arraylist no prova
             } else {
-                verifica = 1;
+                contPeso = 0;
+                verPeso = false;
+                System.out.println("O peso das questoes nao conferem com o peso total da prova.");
+                System.out.println("Comece a prova novamente. ");
             }
+        } while (verPeso == false);
 
-        } while (verifica == 0);
-        p1.setQ(q); // add arraylist no prova
         verdade = true;
         while (verdade == true) {
             try {
@@ -283,7 +318,6 @@ public class GeradorProva {
             try {
                 System.out.println("Digite o nome do arquivo em que deseja salvar o gabarito: ");
                 nomeArquivoGabarito = leitor.nextLine();
-                System.out.println(nomeArquivoGabarito);
 
                 File arquivo2 = new File(nomeArquivoGabarito + ".txt");// criação do arquivo txt
                 if (!arquivo2.exists()) // se arquivo n existe cria

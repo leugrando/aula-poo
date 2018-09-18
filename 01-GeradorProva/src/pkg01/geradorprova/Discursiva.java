@@ -41,7 +41,7 @@ final class Discursiva extends Questao {
     }
 
     @Override
-    public String retornaQuestaoGabarito() { 
+    public String retornaQuestaoGabarito() {
         String retorno = "";
 
         retorno += "(Peso " + this.getPeso() + ") " + this.getPergunta() + "\r\n";
